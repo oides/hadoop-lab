@@ -14,11 +14,8 @@ public class Map extends Mapper<Object, Text, Text, Text> {
 		java.util.Map<String, String> lineParsed = MRUtil.transformXmlToMap(value.toString());
 		String location = lineParsed.get("Location");
 		
-		// && (location.contains("brazil") || location.contains("brasil"))
 		if (location != null && (location.contains("rasil") || location.contains("razil"))) {
 			context.write(new Text(lineParsed.get("Id")), new Text(lineParsed.get("DisplayName") + " - " + location));
-		} else {
-			//context.write(new Text(lineParsed.get("Id")), new Text(location));
 		}
 		
 	}
